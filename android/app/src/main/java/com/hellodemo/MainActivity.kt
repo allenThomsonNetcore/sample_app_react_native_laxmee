@@ -16,12 +16,10 @@ class MainActivity : ReactActivity() {
         super.onCreate(savedInstanceState)
         val isSmartechHandledDeeplink = getInstance(WeakReference(this)).isDeepLinkFromSmartech(intent)
         if (!isSmartechHandledDeeplink) {
-            Hansel.pairTestDevice(getIntent().getDataString());
+            Hansel.pairTestDevice(intent?.dataString)
         }
 
     }
-
-
 
     /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule
