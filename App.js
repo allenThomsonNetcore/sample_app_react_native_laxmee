@@ -17,8 +17,8 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <NavigationContainer >
-        <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Navigator initialRouteName="Login" nativeID={'hansel_ignore_container'}>
+          <Stack.Screen name="Login" component={LoginScreen}   />
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="DressDetails" component={DressDetailsScreen} />
           <Stack.Screen name="Wishlist" component={WishlistScreen} />

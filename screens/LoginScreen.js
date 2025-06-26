@@ -37,14 +37,15 @@ export default function LoginScreen({ navigation }) {
         {...props}
         disappearsOnIndex={-1} // backdrop hilang saat sheet tertutup
         appearsOnIndex={0}     // backdrop muncul saat index 0
-        opacity={0.5}          // gelap transparan
+        opacity={0.5}     
+        nativeID={'hansel_ignore_container'}     // gelap transparan
       />
     ),
     []
   );
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} >
       <Image source={require('../assets/stylelogo.jpg')} style={styles.logo} />
       <Text style={styles.title}>Login</Text>
 
@@ -78,15 +79,16 @@ export default function LoginScreen({ navigation }) {
 
       </View>
       <Button title="Open Bottom Sheet" onPress={handleOpen} />
-      <BottomSheet
+      <BottomSheet 
         ref={bottomSheetRef}
         index={-1}
         snapPoints={snapPoints}
         enablePanDownToClose
         backdropComponent={renderBackdrop}
+        nativeID={'hansel_ignore_container'}
 
       >
-        <BottomSheetView style={styles.sheetContainer}>
+        <BottomSheetView style={styles.sheetContainer}  nativeID={'hansel_ignore_container'} >
           <Text>Awesome 🎉</Text>
         </BottomSheetView>
       </BottomSheet>

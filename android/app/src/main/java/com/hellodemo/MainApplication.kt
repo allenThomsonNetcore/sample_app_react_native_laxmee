@@ -1,6 +1,7 @@
 package com.hellodemo
 
-import android.R
+
+import com.hellodemo.R
 import android.app.Application
 import com.facebook.react.PackageList
 import com.facebook.react.ReactApplication
@@ -15,6 +16,9 @@ import com.facebook.soloader.SoLoader
 import com.netcore.android.Smartech
 import com.smartechbasereactnative.SmartechBasePlugin
 import java.lang.ref.WeakReference
+import io.hansel.core.logger.HSLLogLevel
+import android.view.View
+import io.hansel.hanselsdk.Hansel
 
 
 class MainApplication : Application(), ReactApplication {
@@ -45,19 +49,30 @@ class MainApplication : Application(), ReactApplication {
     val smartechBasePlugin = SmartechBasePlugin.getInstance()
     smartechBasePlugin.init(this)
 
-    val nativeIdSet: MutableSet<String> = HashSet()
+
+val nativeIdSet = HashSet<String>()
     nativeIdSet.add("hansel_ignore_container")
-//    ReactFindViewUtil.addViewsListener({ view, nativeID ->
-//      view.setTag(
-//        R.id.hansel_ignore_view,
-//        true
-//      )
-//    }, nativeIdSet)
+   ReactFindViewUtil.addViewsListener({ view, nativeID ->
+  view.setTag(
+       R.id.hansel_ignore_view,
+        true
+     )
+  }, nativeIdSet)
+
+ReactFindViewUtil.addViewsListener(
+    object : ReactFindViewUtil.OnMultipleViewsFoundListener {
+        override fun onViewFound(view: View, nativeID: String) {
+            view.setTag(R.id.hansel_ignore_view, true)
+        }
+    },
+    nativeIdSet
+)
+
 
 //    Smartech.setDebugLevel(SMTDebugLevel.Level.VERBOSE);
-//    HSLLogLevel.all.setEnabled(true);
-//    HSLLogLevel.mid.setEnabled(true);
-//    HSLLogLevel.debug.setEnabled(true);
+ HSLLogLevel.all.setEnabled(true);
+  HSLLogLevel.mid.setEnabled(true);
+  HSLLogLevel.debug.setEnabled(true);
     Smartech.getInstance(WeakReference(applicationContext)).setDebugLevel(9)
 
 
