@@ -12,15 +12,15 @@
       android:supportsRtl="true">
         <meta-data
             android:name="SMT_APP_ID"
-            android:value="4973f71041de51a5bfd8ab4f673598d7" />
+            android:value="3e3e838020149ee53689841da279c341" />
 
         <meta-data
             android:name="HANSEL_APP_ID"
-            android:value="TPZZXH2ORNZT3UYP3GFCF49LA" />
+            android:value="5WMK2OV9P4N20QFDD2ZM134HR" />
 
         <meta-data
             android:name="HANSEL_APP_KEY"
-            android:value="ZL8Y9ZV845CQFJHZC195XMVU9R6SCVM0W7L86MKLSELDFUB9GV" />
+            android:value="GKGP78UKZQOSVZUBU6EVWYP636EB1D84LFA4B7R24C1X88R46P" />
         <meta-data
             android:name="SMT_USE_ENCRYPTION"
             android:value="true" />
@@ -49,7 +49,7 @@
               <category android:name="android.intent.category.DEFAULT" />
               <category android:name="android.intent.category.BROWSABLE" />
 
-              <data android:scheme="hellodemo" />
+              <data android:scheme="allentest" />
           </intent-filter>
       </activity>
       <service
