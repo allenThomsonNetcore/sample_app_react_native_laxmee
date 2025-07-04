@@ -18,6 +18,7 @@ import com.smartechbasereactnative.SmartechBasePlugin
 import java.lang.ref.WeakReference
 import io.hansel.core.logger.HSLLogLevel
 import android.view.View
+import io.hansel.react.HanselRn
 import io.hansel.hanselsdk.Hansel
 
 
@@ -50,23 +51,30 @@ class MainApplication : Application(), ReactApplication {
     smartechBasePlugin.init(this)
 
 
-val nativeIdSet = HashSet<String>()
-    nativeIdSet.add("hansel_ignore_container")
-   ReactFindViewUtil.addViewsListener({ view, nativeID ->
-  view.setTag(
-       R.id.hansel_ignore_view,
-        true
-     )
-  }, nativeIdSet)
 
-ReactFindViewUtil.addViewsListener(
-    object : ReactFindViewUtil.OnMultipleViewsFoundListener {
-        override fun onViewFound(view: View, nativeID: String) {
-            view.setTag(R.id.hansel_ignore_view, true)
-        }
-    },
-    nativeIdSet
-)
+      val nativeIdSet = setOf("hansel_ignore_view_overlay", "hansel_ignore_view")
+
+      ReactFindViewUtil.addViewsListener(
+          object : ReactFindViewUtil.OnMultipleViewsFoundListener {
+              override fun onViewFound(view: View, nativeID: String) {
+                  if (nativeID == "hansel_ignore_view_overlay") {
+                      val tag = view.tag?.toString() ?: return
+                      val values = tag.split("#")
+                      val parentsLayerCount = values[0].toIntOrNull() ?: return
+                      val childLayerIndex = if (values.size < 2 || values[1].isEmpty()) {
+                          0
+                      } else {
+                          values[1].toIntOrNull() ?: 0
+                      }
+                      HanselRn.setHanselIgnoreViewTag(view, parentsLayerCount, childLayerIndex)
+                  } else {
+                      view.setTag(io.hansel.react.R.id.hansel_ignore_view, true)
+                  }
+              }
+          },
+          nativeIdSet
+      )
+
 
 
 //    Smartech.setDebugLevel(SMTDebugLevel.Level.VERBOSE);

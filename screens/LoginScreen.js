@@ -79,6 +79,7 @@ export default function LoginScreen({ navigation }) {
 
       </View>
       <Button title="Open Bottom Sheet" onPress={handleOpen} />
+      <View style = {{flex:1}} testID={'4#1'} nativeID = {'hansel_ignore_view_overlay'}>
       <BottomSheet 
         ref={bottomSheetRef}
         index={-1}
@@ -92,7 +93,7 @@ export default function LoginScreen({ navigation }) {
           <Text>Awesome 🎉</Text>
         </BottomSheetView>
       </BottomSheet>
-
+      </View>
     </View>
 
 
